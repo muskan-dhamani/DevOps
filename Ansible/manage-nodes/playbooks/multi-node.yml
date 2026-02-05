@@ -1,0 +1,14 @@
+---
+- name: Run on all nodes
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Create a file on all the nodes
+      file:
+        path: /tmp/ansible_file.txt
+        state: touch
+    - name: Show a message
+      debug:
+        msg: "File created on {{ inventory_hostname }}"

@@ -1,0 +1,14 @@
+---
+- name: Handler example
+  hosts: node_containers
+
+  tasks:
+    - name: Create config files
+      file:
+        path: /tmp/app.conf
+        state: touch
+      notify: restart app
+
+  handlers:
+    - name: restart app
+      command: echo "App restarted"

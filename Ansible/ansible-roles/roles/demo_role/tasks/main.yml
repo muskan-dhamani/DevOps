@@ -1,0 +1,6 @@
+---
+- name: Create a file using roles
+  file:
+    path: "{{ demo_file_path }}"
+    state: touch
+  notify: role handler

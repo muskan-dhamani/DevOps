@@ -1,0 +1,27 @@
+---
+- name: Jinja2 Template
+  hosts: all
+  become: false
+
+  vars:
+    nginx_port: 80
+    server_name: localhost
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Deploy nginx config using jinja2 template
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted

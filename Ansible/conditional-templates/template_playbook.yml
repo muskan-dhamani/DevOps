@@ -1,0 +1,15 @@
+---
+- name: Template with if and for
+  hosts: docker_nodes
+  connection: docker
+
+  vars:
+    app: myapp
+    env: dev
+    users: [dev, test]
+
+  tasks:
+    - name: Deploy config
+      template:
+        src: templates/app.conf.j2
+        dest: /tmp/app.conf
