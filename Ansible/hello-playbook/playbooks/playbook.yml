@@ -1,0 +1,10 @@
+---
+- name: Hello World Playbook
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Print a message
+      debug:
+        msg: "Hello from the hello-playbook.yml"
+

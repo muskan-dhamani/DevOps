@@ -1,0 +1,14 @@
+---
+- name: Loops and Conditions
+  hosts: nodes
+  connection: docker
+
+  vars:
+    users: [dev, test, ops]
+
+  tasks:
+    - name: Create users only on node1
+      user:
+        name: "{{ item }}"
+      loop: "{{ users }}"
+      when: inventory_hostname == "node1"

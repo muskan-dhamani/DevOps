@@ -1,0 +1,5 @@
+---
+- name: Use a role
+  hosts: node_containers
+  roles:
+    - demo_role

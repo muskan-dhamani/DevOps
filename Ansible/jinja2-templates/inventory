@@ -1,0 +1,7 @@
+[node]
+node1 ansible_user=root
+node2 ansible_user=root
+
+[docker]
+node1 ansible_connection=docker
+node2 ansible_connection=docker

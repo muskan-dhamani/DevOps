@@ -1,0 +1,10 @@
+services:
+  web:
+    image: httpd
+    ports:
+      - "8081:80"
+    volumes:
+      - webdata:/usr/local/apache2/htdocs
+
+volumes:
+  webdata:

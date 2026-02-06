@@ -1,0 +1,14 @@
+---
+- name: Templates
+  hosts: docker_nodes
+  connection: docker
+
+  vars:
+    app: demo
+
+  tasks:
+
+    - name: Creating config from template
+      template:
+        src: templates/app.conf.j2
+        dest: /tmp/app.conf

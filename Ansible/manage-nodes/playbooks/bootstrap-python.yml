@@ -1,0 +1,11 @@
+---
+- name: Bootstrap python on nodes
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Install python3 using raw module
+      raw: |
+        apt update -y
+        apt install -y python3
+

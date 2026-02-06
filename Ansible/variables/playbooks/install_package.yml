@@ -1,0 +1,13 @@
+---
+- name: Install package using variables
+  hosts: node_containers
+
+  vars: 
+    my_package: curl
+
+  tasks:
+    - name: Install package
+      apt:
+        name: "{{ my_package }}"
+        state: present
+        update_cache: yes

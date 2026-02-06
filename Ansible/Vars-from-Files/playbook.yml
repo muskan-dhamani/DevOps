@@ -1,0 +1,26 @@
+---
+- name: Variables from Files
+  hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Deploy nginx config using variable files
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted

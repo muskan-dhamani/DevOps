@@ -1,0 +1,7 @@
+---
+- hosts: docker_nodes
+  connection: docker
+  vars:
+    nginx_listen_port: 8080
+  roles:
+    - geerlingguy.nginx

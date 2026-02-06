@@ -1,0 +1,11 @@
+[web]
+node1
+
+[db]
+node2
+
+[all:vars]
+ansible_connection=docker
+ansible_user=root
+ansible_become=false
+ansible_python_interpreter=/usr/bin/python3

@@ -1,0 +1,5 @@
+---
+- hosts: docker_nodes
+  connection: docker
+  roles:
+    - nginx

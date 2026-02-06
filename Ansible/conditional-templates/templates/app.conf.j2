@@ -1,0 +1,12 @@
+app={{ app }}
+
+{% if env == "prod" %}
+mode=production
+{% else %}
+mode=development
+{% endif %}
+
+users:
+{% for u in users %}
+- {{ u }}
+{% endfor %}

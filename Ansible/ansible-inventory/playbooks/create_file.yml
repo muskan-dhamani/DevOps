@@ -1,0 +1,8 @@
+---
+- name: Create a file on containers
+  hosts: node_containers
+  tasks:
+    - name: Create hello file
+      file:
+        path: /tmp/hello.txt
+        state: touch

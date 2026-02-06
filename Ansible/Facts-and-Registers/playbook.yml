@@ -1,0 +1,39 @@
+---
+- name: Ansible playbook to practice Inventory variables, group_vars, variable usages, facts, Conditional (when), register and, debug.
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Show hostname using facts
+      debug:
+        msg: "Running on host {{ ansible_hostname }}"
+
+    - name: Show OS family name using facts
+      debug:
+        msg: "Running on host {{ ansible_os_family }}"
+
+    - name: Update apt cache only for Debian
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install application using variables
+      apt:
+        name: "{{ app_package }}"
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Check if nginx is running
+      shell: pgrep nginx
+      register: nginx_process
+      ignore_errors: yes
+
+    - name: Show nginx process result
+      debug:
+        var: nginx_process.rc
+
+    - name: Start nginx if not running
+      service:
+        name: "{{ app_service }}"
+        state: started
+      when: nginx_process.rc !=0
