@@ -1,0 +1,15 @@
+pipeline {
+
+  agent any
+
+  stages {
+    stage('Sanity') {
+      steps {
+        echo 'Jenkins pipeline is running'
+        sh 'pwd'
+        sh 'ls -l'
+        sh 'cat sample.txt'
+      }
+    }
+  }
+}
