@@ -8,7 +8,7 @@ pipeline {
         echo 'Jenkins pipeline is running'
         sh 'pwd'
         sh 'ls -l'
-        sh 'cat sample.txt'
+        sh 'cat Jenkins/app/sample.txt'
       }
     }
   }
