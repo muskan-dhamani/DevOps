@@ -1,0 +1,23 @@
+pipeline {
+  agent any
+
+  environment {
+
+    APP_NAME = 'my-first-app'
+    ENV = 'development'
+
+  }
+
+  stages {
+
+    stage('Custom Env Variables') {
+
+      steps {
+
+        sh 'echo App Name is $APP_NAME'
+        sh 'echo Environment is $ENV'
+
+      }
+    }
+  }
+}
