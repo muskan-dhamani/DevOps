@@ -1,5 +1,5 @@
 pipeline {
-  agents any
+  agent any
   stages {
     stage ('Read file using dir') {
       steps {
