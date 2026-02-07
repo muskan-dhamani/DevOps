@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Handle Failure') {
+            steps {
+                script {
+                    def status = sh(
+                        script: 'cat does_not_exist.txt',
+                        returnStatus: true
+                    )
+
+                    echo "Command exited with status ${status}"
+                }
+            }
+        }
+    }
+}
