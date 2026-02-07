@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = "jenkins-demo"
+        ENV = "dev"
+    }
+
+    stages {
+
+        stage('Sanity') {
+            steps {
+                echo "Running $APP_NAME in $ENV"
+                sh 'pwd'
+                sh 'ls -l'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mkdir -p Jenkins/jenkins-autobuild/build'
+                sh 'echo "Build OK" > Jenkins/jenkins-autobuild/build/output.txt'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'cat Jenkins/jenkins-autobuild/build/output.txt'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deployment completed'
+            }
+        }
+    }
+}
