@@ -1,0 +1,14 @@
+pipeline {
+  agents any
+  stages {
+    stage ('Read file using dir') {
+      steps {
+        dir('Jenkins/dir') {
+          sh 'pwd'
+          sh 'ls -l'
+          sh 'cat sample.txt'
+        }
+      }
+    }
+  }
+}
