@@ -1,0 +1,18 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage ('Built-in Env Variables') {
+
+      steps {
+
+        sh 'echo WORKSPACE = $WORKSPACE'
+        sh 'echo JOB_NAME = $JOB_NAME'
+        sh 'echo BUILD_NUMBER = $BUILD_NUMBER'
+
+      }
+    }
+  }
+}
