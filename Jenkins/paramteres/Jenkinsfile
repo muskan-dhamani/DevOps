@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'qa', 'prod'], description: 'Environment')
+        string(name: 'VERSION', defaultValue: '1.0', description: 'Version')
+    }
+
+    stages {
+        stage('Info') {
+            steps {
+                echo "Deploying version ${params.VERSION} to ${params.ENV}"
+            }
+        }
+    }
+}

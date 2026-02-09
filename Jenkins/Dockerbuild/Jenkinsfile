@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Docker Build') {
+            steps {
+                sh '''
+                cd Jenkins/jenkins-autobuild
+                docker build -t jenkins-demo:1.0 .
+                '''
+            }
+        }
+    }
+}

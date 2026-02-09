@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mkdir -p Jenkins/jenkins-autobuild/build'
+                sh 'echo "Artifact created" > Jenkins/jenkins-autobuild/build/result.txt'
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'Jenkins/jenkins-autobuild/build/**', fingerprint: true
+            }
+        }
+    }
+}
