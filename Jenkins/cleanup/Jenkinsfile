@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mkdir -p temp && echo "temp data" > temp/file.txt'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning workspace'
+            cleanWs()
+        }
+
+        success {
+            echo 'Build successful'
+        }
+
+        failure {
+            echo 'Build failed'
+        }
+    }
+}

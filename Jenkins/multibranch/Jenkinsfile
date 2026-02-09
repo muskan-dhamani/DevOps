@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Branch Info') {
+            steps {
+                echo "Branch: ${env.BRANCH_NAME}"
+            }
+        }
+
+        stage('Conditional Build') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Running only on main branch'
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:18-alpine'
+            args '-u root'
+        }
+    }
+
+    stages {
+        stage('Environment Check') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Build inside Docker agent"'
+            }
+        }
+    }
+}

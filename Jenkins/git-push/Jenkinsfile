@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Modify File') {
+            steps {
+                sh '''
+                echo "Build done at $(date)" >> Jenkins/jenkins-autobuild/build.log
+                '''
+            }
+        }
+
+        stage('Git Push') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'github-creds',
+                    usernameVariable: 'GIT_USER',
+                    passwordVariable: 'GIT_TOKEN'
+                )]) {
+                    sh '''
+                    git config user.email "jenkins@ci.com"
+                    git config user.name "jenkins-bot"
+
+                    git add .
+                    git commit -m "Auto commit from Jenkins" || echo "Nothing to commit"
+                    git push https://$GIT_USER:$GIT_TOKEN@github.com/muskan-dhamani/DevOps.git
+                    '''
+                }
+            }
+        }
+    }
+}
